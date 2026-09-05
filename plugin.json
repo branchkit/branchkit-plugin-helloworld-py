@@ -1,0 +1,41 @@
+{
+  "$schema": "https://branchkit.dev/schemas/manifest.json",
+  "id": "helloworld",
+  "name": "Helloworld",
+  "version": "0.1.0",
+  "min_api_version": "0.1.0",
+  "description": "A BranchKit plugin",
+  "author": "Your Name",
+  "privileges": ["input"],
+  "run": "python3 main.py",
+  "runtimes": ["python"],
+  "action_prefix": "helloworld",
+  "action_types": {
+    "greet": {
+      "label": "Greet",
+      "fields": [
+        {
+          "key": "name",
+          "label": "Name",
+          "field_type": "string"
+        }
+      ]
+    }
+  },
+  "consumes": {
+    "collections": ["apps"]
+  },
+  "collection_data": {
+    "voice_commands": "commands.json",
+    "keybinds": {
+      "alt+shift+h": { "action": "helloworld.greet", "name": "BranchKit" }
+    }
+  },
+  "implements": {
+    "on_action": true,
+    "render_settings": true,
+    "settings_tabs": [
+      { "label": "Getting Started", "key": "getting_started" }
+    ]
+  }
+}
