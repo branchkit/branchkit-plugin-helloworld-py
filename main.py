@@ -14,10 +14,13 @@ async def greet(req):
     return {"status": "ok"}
 
 
-@plugin.handle("render_settings")
-async def render_settings(params):
-    return {
-        "html": """<div style="padding: 16px; font-family: system-ui;">
+# One renderer per tab declared in plugin.json. The SDK owns the
+# render_settings hook: it dispatches on the tab key and re-renders the tab
+# through the settings stream whenever a method returns.
+@plugin.settings_tab("getting_started")
+def getting_started(params):
+    return """<div style="padding: 16px; font-family: system-ui;">
+
 	<h2 style="margin: 0 0 12px 0;">Helloworld</h2>
 	<p style="color: #888; margin: 0 0 16px 0;">A BranchKit plugin</p>
 
@@ -33,7 +36,7 @@ async def render_settings(params):
 		</tr>
 	</table>
 </div>"""
-    }
+
 
 
 asyncio.run(plugin.run())
