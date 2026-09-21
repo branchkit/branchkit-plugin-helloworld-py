@@ -6,9 +6,11 @@
   "min_api_version": "0.1.0",
   "description": "A BranchKit plugin",
   "author": "Your Name",
-  "privileges": ["input"],
+  "requires": {
+    "privileges": ["input"],
+    "runtimes": ["python"]
+  },
   "run": "python3 main.py",
-  "runtimes": ["python"],
   "action_prefix": "helloworld",
   "action_types": {
     "greet": {
