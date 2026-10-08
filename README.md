@@ -41,9 +41,10 @@ python3 -m unittest          # this plugin's own tests (test_main.py)
 
 The conformance run and the tests start the plugin under
 `branchkit-test-harness`, which runs a real matcher and event bus without the
-app. The harness ships inside the BranchKit app. Without it, `dev test` skips
-conformance, and `python3 -m unittest` errors with a message saying where the
-harness is looked for. Set `BRANCHKIT_TEST_HARNESS` to use a copy elsewhere.
+app. The harness ships inside the BranchKit app; when it is not found these
+tests are skipped, not failed. Set `BRANCHKIT_TEST_HARNESS` to use a copy
+elsewhere, and `BRANCHKIT_REQUIRE_HARNESS=1` (in CI, say) to make a missing
+harness a failure instead of a skip.
 
 ## Install
 
@@ -77,6 +78,7 @@ and asks a running app to load it.
 | `actions_gen.py` | Typed action params, generated from `plugin.json` |
 | `test_main.py` | Tests against the test harness |
 | `.github/workflows/conformance.yml` | On a `v*` tag: the static checks |
+| `AGENTS.md`, `CLAUDE.md` | Instructions for AI coding agents working on this plugin |
 
 ## Continuous checks
 
